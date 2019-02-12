@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title></title>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+</head>
+<body>
+	<div id="displayDiv"></div>
+
+	<!-- id="template" -> HTML로 작성된 템플릿 코드라고 가리킨다 -->
+	<script id="template" type="text/x-handlebars-template">
+		<span> {{ name }} </span> 
+		<div>
+			<span> {{ userid }} </span>
+			<span> {{ addr }} </span>
+		</div>
+	</script>
+
+	<script>
+		var source = $('#template').html(); // 사용할 HTML 코드를 id="template"인 별도의 태그에 작성
+		var template = Handlebars.compile(source); // source를 가지고 템플릿을 생성
+		var data = {name:"홍길동", userid:"user00", addr:"조선 한양"};
+		
+		$('#displayDiv').html(template(data)); // 템플릿에 데이터 입력 후 "#displayDiv"의 내용물로 추가
+	</script>
+</body>
+</html>

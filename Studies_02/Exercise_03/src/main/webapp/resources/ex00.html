@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title></title>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+</head>
+<body>
+	<div id="displayDiv"></div>
+	
+	<script>
+		var source = "<h1><p>{{name}}</p> <p>{{userid}}</p> <p>{{addr}}</p></h1>"; // 사용할 HTML 코드
+		var template = Handlebars.compile(source); // source를 가지고 템플릿을 생성
+		var data = {name:"홍길동", userid:"user00", addr:"조선 한양"};
+		
+		$('#displayDiv').html(template(data)); // 템플릿에 데이터 입력 후 "#displayDiv"의 내용물로 추가
+	</script>
+</body>
+</html>

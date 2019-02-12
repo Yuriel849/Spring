@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title></title>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+</head>
+<body>
+	<ul id="replies"></ul>
+
+	<!--
+	id="template" -> HTML로 작성된 템플릿 코드라고 가리킨다
+		"{{#each .}}"
+			"#each" -> 배열의 루프를 순환하라는 의미
+			"." -> 배열을 도는 동안의 해당 객체를 의미 (ex) arr 배열의 arr[i] 번째 객체)
+	 -->
+	<script id="template" type="text/x-handlebars-template">
+		{{#each .}}
+		<li class="replyLi">
+			<div>{{rno}}</div>
+			<div>{{replytext}}</div>
+			<div>{{replydate}}</div>
+		</li>
+		{{/each}}
+	</script>
+
+	<script>
+		var source = $('#template').html(); // 사용할 HTML 코드를 id="template"인 별도의 태그에 작성
+		var template = Handlebars.compile(source); // source를 가지고 템플릿을 생성
+		var data = [
+			{rno:1, replytext:'1번 댓글.....', replydate:new Date()},
+			{rno:2, replytext:'2번 댓글.....', replydate:new Date()},
+			{rno:3, replytext:'3번 댓글.....', replydate:new Date()},
+			{rno:4, replytext:'4번 댓글.....', replydate:new Date()},
+			{rno:5, replytext:'5번 댓글.....', replydate:new Date()}
+		];
+		$("#replies").html(template(data)); // 템플릿에 데이터 입력 후 "#replies"의 내용물로 추가
+	</script>
+</body>
+</html>

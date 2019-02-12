@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+	<!-- MemberPwChangeService는 변수 값을 채우기 위해서 MemberDao 객체가 필요하다
+		-> autowire="byName" -> 자동으로 의존 설정을 하게끔 설정
+		-> MemberPwChangeService에서는 setDao()가 존재 -> 그럼 dao라는 이름의 객체가 컨테이너에 존재하는가?
+		-> appCtx.xml에는 dao라는 이름의 MemberDao 객체가 존재한다 -> 자동 주입!
+	-->
+<!--<bean id="changeService" class="spring.service.MemberPwChangeService" autowire="byName"></bean> -->
+	
+	<!-- MemberPwChangeService는 변수 값을 채우기 위해서 MemberDao 객체가 필요하다
+		-> autowire="byType" -> 자동으로 의존 설정을 하게끔 설정
+		-> MemberDao 타입의 객체가 컨테이너에 존재하는가?
+		-> appCtx.xml에는 MemberDao 객체가 존재한다 -> 자동 주입!
+	-->	
+<!-- 	<bean id="changeService" class="spring.service.MemberPwChangeService" autowire="byType"></bean>  -->
+	<bean id="changeService01" class="spring.service.MemberPwChangeService" autowire="byType" scope="prototype">
+<!-- 		<property name="dao">
+			<ref bean="dao"/>
+		</property> -->
+	</bean>
+	
+	<!-- @Autowire -->
+	<bean id="changeService" class="spring.service.MemberPwChangeService"></bean>
+
+	<context:annotation-config />
+	
+
+
+</beans>
