@@ -84,7 +84,7 @@ local.properties
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-.src.test/
+test/
 
 # Package Files #
 *.jar
