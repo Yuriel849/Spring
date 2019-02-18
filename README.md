@@ -3,7 +3,6 @@ A repository of my studies of the Spring framework
 <br/>
 
 ## Spring Configuration Guidelines
-<br/>
 
 ### Set up new Spring Legacy Project
 > Right-click > Properties > Project Facets > Java ver. 1.8 <br/>
