@@ -6,10 +6,10 @@ A repository of my studies of the Spring framework
 <br/>
 
 ### Set up new Spring Legacy Project
-> Right-click > Properties > Project Facets > Java ver. 1.8
+> Right-click > Properties > Project Facets > Java ver. 1.8 <br/>
 pom.xml > properties > <java-version>1.8</java-version><org.springframework-version>4.3.8.RELEASE</org.springframework-version>
-Optional (Changing Project Facets is sufficient)
->> Right-click > Properties > Java Build Path > Add JRE System Library 1.8
+Optional (Changing Project Facets is sufficient) <br/>
+>> Right-click > Properties > Java Build Path > Add JRE System Library 1.8 <br/>
 Right-click > Properties > Java Compiler > Java Compliance > Java ver. 1.8
 <br/>
 
