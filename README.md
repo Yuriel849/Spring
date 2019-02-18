@@ -6,16 +6,16 @@ A repository of my studies of the Spring framework
 <br/>
 
 ### Set up new Spring Legacy Project
-#### &nbsp;&nbsp;&nbsp;Right-click > Properties > Project Facets > Java ver. 1.8
-#### &nbsp;&nbsp;&nbsp;pom.xml > properties > <java-version>1.8</java-version><org.springframework-version>4.3.8.RELEASE</org.springframework-version>
-#### &nbsp;&nbsp;&nbsp;Optional (Changing Project Facets is sufficient)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Right-click > Properties > Java Build Path > Add JRE System Library 1.8
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Right-click > Properties > Java Compiler > Java Compliance > Java ver. 1.8
+> Right-click > Properties > Project Facets > Java ver. 1.8
+pom.xml > properties > <java-version>1.8</java-version><org.springframework-version>4.3.8.RELEASE</org.springframework-version>
+Optional (Changing Project Facets is sufficient)
+>> Right-click > Properties > Java Build Path > Add JRE System Library 1.8
+Right-click > Properties > Java Compiler > Java Compliance > Java ver. 1.8
 <br/>
 
 ### Important dependencies
-#### &nbsp;&nbsp;&nbsp;MySQL Connector J
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<dependency><groupId>mysql</groupId><artifactId>mysql-connector-java</artifactId><version>5.1.47</version></dependency>
+> MySQL Connector J
+>> <dependency><groupId>mysql</groupId><artifactId>mysql-connector-java</artifactId><version>5.1.47</version></dependency>
 <br/>
 
 #### &nbsp;&nbsp;&nbsp;JDBC with Spring
