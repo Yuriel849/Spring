@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/rest")
-public class restController {
+public class RestTestController {
 	@GetMapping("/msgs/{id}")
 	public String sayHello(@PathVariable("id") String id) {
 		return "Hello World, " + id; // @RestController annotation 때문에 반환하는 문자열을 view 이름이 아닌 단순 문자열로 취급한다.
