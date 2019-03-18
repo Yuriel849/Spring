@@ -6,7 +6,7 @@ A repository of my studies of the Spring framework
 
 ### Set up new Spring Legacy Project
 > Right-click > Properties > Project Facets > Java ver. 1.8 <br/>
-pom.xml > properties > <java-version>1.8</java-version><org.springframework-version>5.0.7.RELEASE</org.springframework-version><org.aspectj-version>1.8.9</org.aspectj-version> <br/>
+pom.xml > properties > <java-version>1.8</ java-version><org.springframework-version>5.0.7.RELEASE</org.springframework-version><org.aspectj-version>1.8.9</org.aspectj-version> <br/>
 pom.xml > build > plugins > <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.5.1</version><configuration><source>1.8</source><target>1.8</target><compilerArgument>-Xlint:all</compilerArgument><showWarnings>true</showWarnings><showDeprecation>true</showDeprecation></configuration></plugin> <br/>
 
 Optional (Changing Project Facets is sufficient) <br/>
