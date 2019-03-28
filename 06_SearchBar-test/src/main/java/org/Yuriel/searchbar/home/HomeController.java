@@ -36,4 +36,11 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/basic", method = RequestMethod.GET)
+	public String basicAutoComplete() {
+		logger.info("Loading 'basic autocomplete' view.");
+		
+		return "basicAutoComplete";
+	}
+	
 }
