@@ -43,4 +43,11 @@ public class HomeController {
 		return "basicAutoComplete";
 	}
 	
+	@RequestMapping(value = "/lists", method = RequestMethod.GET)
+	public String autoCompleteFromDB() {
+		logger.info("Loading 'autocomplete with data read from DB' view.");
+		
+		return "autoComplete_GetDB";
+	}
+	
 }
