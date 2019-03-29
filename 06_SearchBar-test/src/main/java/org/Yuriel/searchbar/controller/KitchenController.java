@@ -1,14 +1,10 @@
 package org.Yuriel.searchbar.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 
-import org.Yuriel.searchbar.model.BizVO;
-import org.Yuriel.searchbar.model.KitchenBranchVO;
-import org.Yuriel.searchbar.model.MenuVO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -32,34 +28,13 @@ public class KitchenController {
 	public ResponseEntity<Map<String, List>> getLists() {
 		log.info("Reading lists of kitchen branches, businesses, menus for the autocomplete");
 		
-		Map<String, List> returnVal = new HashMap<String, List>();
-		List<KitchenBranchVO> returnKitchen = null;
-		List<BizVO> returnBiz = null;
-		List<MenuVO> returnMenu = null;
-		String url = "http://localhost/rest/kitchenbranch/";
+		Map<String, List> returnVal = null;
+		String url = "http://localhost/rest/kitchenbranch/alllists";
 		
-		ResponseEntity<List> responseEntity = restTemplate.getForEntity(url + "kitchenlist", java.util.List.class);
-		log.info(responseEntity);
+		ResponseEntity<Map> responseEntity = restTemplate.getForEntity(url, Map.class);
 		if(!responseEntity.getBody().isEmpty()) {
-			returnKitchen = responseEntity.getBody();
-		}
-		
-		responseEntity = restTemplate.getForEntity(url + "bizlist", java.util.List.class);
-		log.info(responseEntity);
-		if(!responseEntity.getBody().isEmpty()) {
-			returnBiz = responseEntity.getBody();
-		}
-		
-		responseEntity = restTemplate.getForEntity(url + "menulist", java.util.List.class);
-		log.info(responseEntity);
-		if(!responseEntity.getBody().isEmpty()) {
-			returnMenu = responseEntity.getBody();
-		}
-		
-		returnVal.put("kitchenList", returnKitchen);
-		returnVal.put("bizList", returnBiz);
-		returnVal.put("menuList", returnMenu);
-		
+			returnVal = responseEntity.getBody();
+		}	
 		log.info(returnVal);
 		
 		return new ResponseEntity<Map<String,List>>(returnVal, HttpStatus.OK);
