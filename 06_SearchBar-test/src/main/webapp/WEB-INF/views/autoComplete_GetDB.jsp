@@ -17,59 +17,101 @@
 <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"
 	integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
 	crossorigin="anonymous"></script>
-<script>
-	$(document).ready(function() {
-		let source = [];
-		$.ajax({
-			type : 'GET'
-			, url : 'http://localhost:12001/kitchen/lists.json'
-			, contentType : 'application/json'
-		 	, success : function(data) {
-		 		let readData = [];
-		 		readData.push(data.kitchenList);
-		 		readData.push(data.bizList);
-		 		readData.push(data.menuList);
-		 		console.log(readData);
-		 		for(let i = 0; i < readData.length; i++) {
-			 		let readList = readData[i];
-			 		console.log(readList);
- 			 		for(let j = 0; j < readList.length; j++) {
-			 			let readLine = readList[j];
-			 			console.log(readLine);
-			 			
-			 		}
-			 		
-		 		}
-		  	}
-			, error : function(data) {
-				console.log('ERRoR oCCURRED');
-				console.log(data);
-			}
-		});
-		$(function() {
-			var availableTags = [ "A for Apple", "A for Ant", "B for Ball",
-					"B for Bat", "C for Carrot", "C for Car", "D for Duck",
-					"D for Door", "E for Elevator", "E for Egg", "F for Fish",
-					"F for Flag", "G for Guitar", "G for Glass", "H for Hammer",
-					"H for Hat", "I for Indian", "I for Igloo", "J for Jam",
-					"J for Juice", "K for Kangaroo", "K for Key", "L for Ladder",
-					"L for Leaf", "M for Monkey", "M for Mouse", "N for Nail",
-					"N for Nose", "O for Octopus", "O for Orange", "P for Paint",
-					"P for Popcorn", "Q for Question", "Q for Queen",
-					"R for Radio", "R for Rake", "S for Saw", "S for Snake",
-					"T for Tree", "T for Train", "U for Umbrella", "U for Unicorn",
-					"V for Vacuum", "V for Violin", "W for Whale", "W for Watch",
-					"X", "Axe", "Box", "Fox", "Y for Yo yo", "Y for Yacht",
-					"Z for Zebra" ]
-			$("#tags").autocomplete({
-				source : availableTags
-			});
-		});
-	})
-</script>
+<style>
+	.ui-autocomplete-category {
+		font-weight: bold;
+		padding: .2em .4em;
+		margin: .8em 0 .2em;
+		line-height: 1.5;
+	}
+</style>
 </head>
 <body>
-	<label for="tags">Tags: </label>
-	<input id="tags">
+	<div>
+		<label for="searchbar">Search : </label>
+		<input id="searchbar">
+		<input id="searchBtn" type="button" value="검색">
+	</div>
+	
+	<div id="searchResults"></div>
+	
+	<script>
+		$(document).ready(function() {
+			let source = [];
+			$.ajax({
+				type : 'GET'
+				, url : 'http://localhost:12001/kitchen/lists.json'
+				, contentType : 'application/json'
+			 	, success : function(data) {
+			 		let readList, category;
+			 		for(let i = 0; i < 3; i++) {
+		 				if(i == 0) {
+			 				readList = data.kitchenList;
+			 				category = "지점";
+			 			}
+		 				if(i == 1) {
+		 					readList = data.bizList;
+		 					category = "가게";
+			 			}
+			 			if(i == 2) {
+			 				readList = data.menuList;
+		 					category = "메뉴";
+		 				}
+				 			for(let j = 0; j < readList.length; j++) {
+					 		let readLine = readList[j];
+					 		source.push({label: readLine.name, category: category});				 		
+				 		}
+		 			}
+			  	}
+				, error : function(data) {
+					console.log('ERRoR oCCURRED');
+					console.log(data);
+				}
+			});
+
+			$.widget( "custom.catcomplete", $.ui.autocomplete, {
+				_create: function() {
+		    		this._super();
+			        this.widget().menu( "option", "items", "> :not(.ui-autocomplete-category)" );
+				},
+				_renderMenu: function( ul, items ) {
+		    		var that = this, currentCategory = " ";
+		        	$.each( items, function( index, item ) {
+			        	var li;
+			        	if ( item.category != currentCategory ) {
+			        		ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
+		    	    		currentCategory = item.category;
+		        		}
+		        		li = that._renderItemData( ul, item );
+			        	if ( item.category ) {
+			        		li.attr( "aria-label", item.category + " : " + item.label );
+			        	}
+		    	    });
+				}
+			});
+
+			$("#searchbar").catcomplete({
+				delay : 0
+				, source : source
+			});
+			
+		/* 검색창에 입력 후 검색하기 클릭하면... */
+			$('#searchBtn').on('click', () => {
+				$.ajax({
+					type : 'GET'
+					, url : 'http://localhost:12001/kitchen/search/' + $('#searchbar').val() + '.json'
+					, contentType : 'application/json'
+				 	, success : function(data) {
+				 		data.appendTo($('#searchResults'));
+
+				  	}
+					, error : function(data) {
+						console.log('ERRoR oCCURRED');
+						console.log(data);
+					}
+				});
+			});
+		});
+	</script>
 </body>
 </html>
