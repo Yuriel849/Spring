@@ -1,5 +1,7 @@
 package org.Yuriel.searchbar.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +12,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
@@ -42,14 +45,15 @@ public class KitchenController {
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@GetMapping(value = "/search/{query}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<Map<String, List>> searchLists(@PathVariable("query") String query) {
+	@PostMapping(value = "/search", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity<Map<String, List>> searchLists(@RequestBody String query) {
 		log.info("Searching lists of kitchen branches, businesses, menus");
+		System.out.println(query);
 		
 		Map<String, List> returnVal = null;
-		String url = "http://localhost/rest/kitchenbranch/searchlists/{query}";
+		String url = "http://localhost/rest/kitchenbranch/searchlists";
 		
-		ResponseEntity<Map> responseEntity = restTemplate.getForEntity(url, Map.class, query);
+		ResponseEntity<Map> responseEntity = restTemplate.postForEntity(url, query, Map.class);
 		if(!responseEntity.getBody().isEmpty()) {
 			returnVal = responseEntity.getBody();
 		}	

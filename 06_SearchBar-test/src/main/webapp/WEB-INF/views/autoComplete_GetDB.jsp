@@ -98,9 +98,12 @@
 		/* 검색창에 입력 후 검색하기 클릭하면... */
 			$('#searchBtn').on('click', () => {
 				$.ajax({
-					type : 'GET'
-					, url : 'http://localhost:12001/kitchen/search/' + $('#searchbar').val() + '.json'
+					type : 'POST'
+					, url : 'http://localhost:12001/kitchen/search.json'
 					, contentType : 'application/json'
+					, data : {
+						query : $('#searchbar').val()
+					}
 				 	, success : function(data) {
 				 		data.appendTo($('#searchResults'));
 
