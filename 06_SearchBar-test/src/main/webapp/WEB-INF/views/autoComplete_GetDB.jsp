@@ -45,25 +45,35 @@
 				, url : 'http://localhost:12001/kitchen/lists.json'
 				, contentType : 'application/json'
 			 	, success : function(data) {
+			 		console.log(data);
 			 		let readList, category;
 			 		for(let i = 0; i < 3; i++) {
 		 				if(i == 0) {
 			 				readList = data.kitchenList;
 			 				category = "지점";
+					 		for(let j = 0; j < readList.length; j++) {
+						 		let readLine = readList[j];
+						 		source.push({label: readLine.kitchenname, category: category});				 		
+					 		}
 			 			}
 		 				if(i == 1) {
 		 					readList = data.bizList;
 		 					category = "가게";
+					 		for(let j = 0; j < readList.length; j++) {
+						 		let readLine = readList[j];
+						 		source.push({label: readLine.bizName, category: category});				 		
+					 		}
 			 			}
 			 			if(i == 2) {
 			 				readList = data.menuList;
 		 					category = "메뉴";
+					 		for(let j = 0; j < readList.length; j++) {
+						 		let readLine = readList[j];
+						 		source.push({label: readLine.mname, category: category});				 		
+					 		}
 		 				}
-				 			for(let j = 0; j < readList.length; j++) {
-					 		let readLine = readList[j];
-					 		source.push({label: readLine.name, category: category});				 		
-				 		}
 		 			}
+			 		console.log(source);
 			  	}
 				, error : function(data) {
 					console.log('ERRoR oCCURRED');
