@@ -1,12 +1,11 @@
 package org.Yuriel.searchbar.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.Yuriel.searchbar.model.BizVOExtend;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -46,19 +45,19 @@ public class KitchenController {
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@PostMapping(value = "/search", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<Map<String, List>> searchLists(@RequestBody String query) {
+	public ResponseEntity<List<BizVOExtend>> searchLists(@RequestBody String query) {
 		log.info("Searching lists of kitchen branches, businesses, menus");
 		System.out.println(query);
 		
-		Map<String, List> returnVal = null;
+		List<BizVOExtend> returnVal = null;
 		String url = "http://localhost/rest/kitchenbranch/searchlists";
 		
-		ResponseEntity<Map> responseEntity = restTemplate.postForEntity(url, query, Map.class);
+		ResponseEntity<List> responseEntity = restTemplate.postForEntity(url, query, List.class);
 		if(!responseEntity.getBody().isEmpty()) {
 			returnVal = responseEntity.getBody();
 		}	
 		log.info(returnVal);
 		
-		return new ResponseEntity<Map<String,List>>(returnVal, HttpStatus.OK);
+		return new ResponseEntity<List<BizVOExtend>>(returnVal, HttpStatus.OK);
 	}
 }
