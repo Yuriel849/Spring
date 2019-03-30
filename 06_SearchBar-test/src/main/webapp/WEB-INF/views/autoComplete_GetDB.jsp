@@ -33,7 +33,9 @@
 		<input id="searchBtn" type="button" value="검색">
 	</div>
 	
-	<div id="searchResults"></div>
+	<div id="searchResults">
+		<p>THIS IS THE SEARCHRESULTS DIV</p>
+	</div>
 	
 	<script>
 		$(document).ready(function() {
@@ -105,8 +107,8 @@
 						query : $('#searchbar').val()
 					}
 				 	, success : function(data) {
-				 		data.appendTo($('#searchResults'));
-
+				 		console.log(data);
+				 		$('#searchResults').append('<div>' + data + '</div>');
 				  	}
 					, error : function(data) {
 						console.log('ERRoR oCCURRED');
