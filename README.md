@@ -11,8 +11,7 @@ pom.xml > build > plugins > plugin; groupId = org.apache.maven.plugins; artifact
 
 Optional (Changing Project Facets is sufficient) <br/>
 >> Right-click > Properties > Java Build Path > Add JRE System Library 1.8 <br/>
-Right-click > Properties > Java Compiler > Java Compliance > Java ver. 1.8
-<br/>
+Right-click > Properties > Java Compiler > Java Compliance > Java ver. 1.8 <br/>
 
 ### Important dependencies
 > MySQL Connector J
