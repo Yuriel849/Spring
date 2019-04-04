@@ -1,6 +1,5 @@
 # Spring
-A repository of my studies of the Spring framework
-<br/>
+A repository of my studies of the Spring framework <br/>
 
 ## Spring Configuration Guidelines
 
