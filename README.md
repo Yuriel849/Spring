@@ -34,7 +34,7 @@ Right-click > Properties > Java Compiler > Java Compliance > Java ver. 1.8 <br/>
 >> groupId =org.mybatis; artifactId = mybatis-spring; version = 1.3.0
 <br/>
 
-> Lombok (alternative to getters, setters, and basic constructors)
+> Lombok (superior alternative to getters, setters, and basic constructors)
 >> groupId = org.projectlombok; artifactId = lombok; version = 1.18.6; scope = provided
 <br/>
 
