@@ -1,6 +1,8 @@
 # Spring
 A repository of my studies of the Spring framework <br/>
 
+06.07.2019 - False alarm, email about pom.xml security issues (jackson-databind)
+
 ## Spring Configuration Guidelines
 
 ### Set up new Spring Legacy Project
